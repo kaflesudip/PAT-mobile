@@ -8,21 +8,24 @@
             restrict: 'E',
             templateUrl: 'app/directives/social-login/social-login.html',
             controller: SocialLoginController,
-            controllerAs: 'vm',
-            bindToController: true
+            controllerAs: 'dvm',
+            // bindToController: true
         };
 
         return directive;
     }
 
-    SocialLoginController.$inject = ['$state'];
+    SocialLoginController.$inject = ['$state', '$ionicLoading'];
 
-    function SocialLoginController($state) {
-        var vm = this;
+    function SocialLoginController($state, $ionicLoading) {
+        var dvm = this;
 
-        vm.facebookLogin = function() {
+        dvm.facebookLogin = function() {
+          $ionicLoading.show({});
             Ionic.Auth.login('facebook', { 'remember': true }).then(
                 function() {
+                $ionicLoading.hide();
+
                     $state.go('app.dashboard');
                 },
                 function(errors) {
@@ -31,9 +34,13 @@
                 });
         }
 
-        vm.googleLogin = function() {
+        dvm.googleLogin = function() {
+          $ionicLoading.show({});
+
             Ionic.Auth.login('google', { 'remember': true }).then(
                 function() {
+                $ionicLoading.hide();
+
                     $state.go('app.dashboard');
                 },
                 function(errors) {

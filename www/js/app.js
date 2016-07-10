@@ -50,7 +50,7 @@ angular.module('patApp', ['ionic','ionic.service.core', 'starter.controllers' , 
       url: '/default',
       abstract: true,
       templateUrl: 'app/default/default.html',
-      // controller: 'DefaultCtrl',
+      // controller: 'DefaultCtl',
       // controllerAs: 'vm'
   })
 
@@ -79,8 +79,7 @@ angular.module('patApp', ['ionic','ionic.service.core', 'starter.controllers' , 
    .state('app', {
       url: '/app',
       abstract: true,
-      templateUrl: 'templates/menu.html',
-      controller: 'LoginCtrl'
+      templateUrl: 'templates/menu.html'
   })
 
   .state('app.dashboard', {

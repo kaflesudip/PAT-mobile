@@ -1,9 +1,9 @@
 (function() {
     'use strict';
     angular.module('patApp').controller('SignupCtrl', SignupCtrl);
-    SignupCtrl.$inject = ['$state', '$ionicPopup'];
+    SignupCtrl.$inject = ['$state', '$ionicPopup', '$ionicLoading'];
 
-    function SignupCtrl($state, $ionicPopup) {
+    function SignupCtrl($state, $ionicPopup, $ionicLoading) {
         var vm = this;
 
         vm.islogin = false;
@@ -12,6 +12,7 @@
 
         //--------------------------------------------
         vm.signup = function() {
+            $ionicLoading.show({});
 
             if (typeof(vm.user) == 'undefined') {
                 vm.showAlert('Please fill username and password to proceed.');
@@ -32,6 +33,8 @@
                     console.log("Signup");
                     Ionic.Auth.login('basic', {}, details).then(
                         function() {
+                          $ionicLoading.hide({});
+
                             $state.go('app.dashboard');
                         },
                         function() {
@@ -41,6 +44,8 @@
 
                 },
                 function(errors) {
+                  $ionicLoading.hide({});
+
                     errorText = "";
                     for (err in errors){
                         console.log("error", err, errors[err]);

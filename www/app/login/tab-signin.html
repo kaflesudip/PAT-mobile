@@ -4,8 +4,8 @@
         <a class="tab-item" ng-class="{'active': vm.islogin}" ui-sref="default.login"><i class="icon ion-unlocked"></i> </a>
     </div>
 </div>
+
 <ion-view view-title="Sign In" class="loginBg" hide-nav-bar="true" ng-controller="LoginCtrl as vm">
-<!-- <ion-nav-title><img src="img/logo.png" width="40"></ion-nav-title> -->
 
   <ion-content class="padding">
 
@@ -22,10 +22,7 @@
 	  </div>
   </div>
 
-	<div class="row  padding removePM">
-	  <div class="col"> <a class=" button-positive button button-block" ng-click="vm.facebookSignIn()"><i class="icon ion-social-facebook"></i></a> </div>
-	  <div class="col"> <a class="button-calm button button-block" ng-click="vm.twitterSignIn()"><i class="icon ion-social-twitter"></i></a> </div>
-	</div>
+	<social-login></social-login>
 
   </ion-content>
 </ion-view>
