@@ -1,0 +1,40 @@
+<div class="tabs-striped  tabs-background-positive tabs-color-light" ng-controller="SignupCtrl as vm">
+    <div class="tabs">
+        <a class="tab-item" ng-class="{'active': !vm.islogin}" ui-sref="default.signup"> <i class="icon ion-person"></i> </a>
+        <a class="tab-item" ng-class="{'active': vm.islogin}" ui-sref="default.login"><i class="icon ion-unlocked"></i> </a>
+    </div>
+</div>
+<ion-view view-title="Sign Up" class="loginBg" hide-nav-bar="true" ng-controller="SignupCtrl as vm">
+    <ion-content class="padding">
+        <div class="row responsive-sm padding remvoeBP">
+            <div class="col">
+                <div class="app-logo"><img src="img/logo.png"></div>
+                <form ng-submit="vm.signup()" name="registerform" >
+                  <div class="list list-inset removePM">
+                      <label class="item item-input "><span class="input-label">Email</span>
+                          <input type="email" placeholder="Email Address" ng-model="vm.user.email" required="required"> </label>
+                      <label class="item item-input  "><span class="input-label">Password</span>
+                          <input type="password" placeholder="Password" ng-model="vm.user.password" required="required" > </label>
+                      <label class="item item-input "><span class="input-label">Full Name</span>
+                          <input type="text" placeholder="Full Name" ng-model="vm.custom.name"> </label>
+                      <label class="item item-input   item-select">
+                        <div class="input-label">Sex</div>
+                          <select name="" id="" ng-model="vm.custom.sex">
+                              <option value="">Male</option>
+                              <option value="female">Female</option>
+                          </select>
+                      </label>
+                      <label class="item item-input  "><span class="input-label">Zip Code</span>
+                          <input type="text" placeholder="Zip Code" ng-model="vm.custom.zip"> </label>
+                      <label class="item item-input  "><span class="input-label">Date of Birth</span>
+                          <input type="date" placeholder="Date of Birth" ng-model="vm.custom.dob"> </label>
+                  </div>
+                  <div class="loginButton">
+                      <button type="submit" class="button ion-person button-block button-balanced" ng-disabled="registerform.$invalid"> Register </button>
+                  </div>
+                </form>
+            </div>
+        </div>
+        <social-login></social-login>
+    </ion-content>
+</ion-view>

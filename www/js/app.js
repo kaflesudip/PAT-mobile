@@ -4,7 +4,7 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('patApp', ['ionic', 'starter.controllers' , 'starter.services'])
+angular.module('patApp', ['ionic','ionic.service.core', 'starter.controllers' , 'starter.services'])
 
 .run(function($ionicPlatform , $rootScope, $timeout) {
   $ionicPlatform.ready(function() {
@@ -46,16 +46,17 @@ angular.module('patApp', ['ionic', 'starter.controllers' , 'starter.services'])
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
 
-  .state('app', {
-      url: '/app',
+  .state('default', {
+      url: '/default',
       abstract: true,
-      templateUrl: 'templates/menu.html',
-      controller: 'LoginCtrl'
+      templateUrl: 'app/default/default.html',
+      // controller: 'DefaultCtrl',
+      // controllerAs: 'vm'
   })
 
 //--------------------------------------
 
- .state('app.login', {
+ .state('default.login', {
     url: '/login',
     views: {
       'menuContent': {
@@ -64,17 +65,23 @@ angular.module('patApp', ['ionic', 'starter.controllers' , 'starter.services'])
     },
 	authStatus: false
   })
- .state('app.signup', {
+ .state('default.signup', {
     url: '/signup',
     views: {
       'menuContent': {
-        templateUrl: 'templates/tab-signup.html',
+        templateUrl: 'app/signup/tab-signup.html',
       }
    },
 	authStatus: false
   })
 //--------------------------------------
 
+   .state('app', {
+      url: '/app',
+      abstract: true,
+      templateUrl: 'templates/menu.html',
+      controller: 'LoginCtrl'
+  })
 
   .state('app.dashboard', {
     url: '/dashboard',
@@ -108,5 +115,5 @@ angular.module('patApp', ['ionic', 'starter.controllers' , 'starter.services'])
     }
   });
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/login');
+  $urlRouterProvider.otherwise('/default/signup');
 });

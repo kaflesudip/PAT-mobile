@@ -1,10 +1,11 @@
 (function() {
     'use strict';
     angular.module('patApp').controller('LoginCtrl', LoginCtrl);
-    LoginCtrl.$inject = ['$location', '$ionicPopup'];
+    LoginCtrl.$inject = ['$location', '$state', '$ionicPopup'];
 
-    function LoginCtrl($location, $ionicPopup) {
+    function LoginCtrl($location, $state, $ionicPopup) {
         var vm = this;
+        vm.islogin = true;
 
         vm.loginData = {};
 
@@ -16,11 +17,18 @@
                 return false;
             }
 
-            if (user.username == 'demo@gmail.com' && user.password == 'demo') {
-                $location.path('/app/dashboard');
-            } else {
+            var details = {
+              'email': vm.user.email,
+              'password': vm.user.password
+            };
+
+            Ionic.Auth.login('basic', {}, details).then(
+              function(){
+                $state.go('app.dashboard');
+              }, function(){
                 vm.showAlert('Invalid username or password.');
-            }
+              }
+            );
 
         };
 
