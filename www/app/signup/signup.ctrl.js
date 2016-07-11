@@ -10,6 +10,14 @@
 
         vm.signupData = {};
 
+        var errorsDict = {
+            "required_email": "Missing E-mail field",
+            "required_password": "Missing Password field",
+            "conflict_email": "A User has already signed up with the supplied e-mail. Please login instead.",
+            "conflict_username": "A User has already signed up with the supplied username.",
+            "invalid_email": "The e-mail did not pass validation."
+        };
+
         //--------------------------------------------
         vm.signup = function() {
             $ionicLoading.show({});
@@ -44,15 +52,11 @@
 
                 },
                 function(errors) {
+                  console.log(errors, errors.length)
                   $ionicLoading.hide({});
-
-                    errorText = "";
-                    for (err in errors){
-                        console.log("error", err, errors[err]);
-                        errorText += errors[err] + ' ';
+                    for (var i=0; i<errors.errors.length; i++){
+                        vm.showAlert(errorsDict[errors.errors[i]]);
                     }
-                    console.log("Error", errorText);
-                    vm.showAlert(errorText);
                 });
 
         };
