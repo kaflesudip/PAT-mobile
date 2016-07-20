@@ -1,0 +1,34 @@
+<ion-view view-title="TOS" class="loginBg" hide-nav-bar="true" ng-controller="TosCtrl as vm">
+    <ion-card>
+      <ion-card-content>
+          <ion-scroll zooming="true" direction="xy" style="height: 500px; background-color: #fff; padding: 10px 10px 10px 10px">
+      <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla commodi, voluptatibus sit repellendus provident dolores maxime eveniet obcaecati eius. Iusto facilis eveniet animi repellat debitis aliquam, assumenda cupiditate quis molestiae.</div><div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel quos, dignissimos aliquam ea, non accusamus quo optio magnam iusto, laboriosam magni officia sequi nam blanditiis, nesciunt obcaecati culpa doloremque qui?</div>
+      <div>Distinctio aut magni illo voluptas nemo, accusantium pariatur rem, harum eveniet deserunt adipisci modi animi iste labore provident eos facere quisquam, libero dolore. Rerum porro, ipsa, quis sequi provident rem.</div>
+      <div>Quibusdam excepturi quod ab voluptatem aperiam, autem totam eius. Dignissimos distinctio necessitatibus quaerat incidunt, nihil maxime esse, nemo ratione, ad, quisquam ex itaque quos magnam. Voluptatum iusto ad dolor doloremque.</div>
+      <div>Harum, atque! Voluptate esse consequatur aliquid assumenda velit tempora beatae porro facere quibusdam aliquam quis veniam laboriosam illum dolorem, animi soluta est. Dolor tenetur hic iure et sit tempore nam.</div>
+      <div>Obcaecati commodi fugiat atque laborum quia reprehenderit cumque saepe aliquam laudantium nam inventore totam, cupiditate voluptates, placeat facere. Laudantium aut ex culpa ipsum in praesentium quidem? Voluptas odio placeat provident.</div>
+      <div>Alias similique quod, consectetur necessitatibus id laudantium saepe iusto dignissimos quis temporibus impedit eaque corrupti pariatur minus ut consequuntur sapiente! Iste sapiente veritatis quo qui, vitae ex voluptatum voluptatibus illo.</div>
+      <div>Corporis qui dicta pariatur, maiores quis sit quasi aut dolor officiis quaerat voluptate minus voluptas, reprehenderit, architecto explicabo eius dignissimos! Beatae nesciunt modi, totam voluptate est dolorum libero maxime culpa!</div>
+      <div>Necessitatibus unde omnis maxime fugiat aspernatur, quaerat, voluptatum iusto architecto distinctio perferendis rerum, officia debitis sequi at laboriosam incidunt illo nulla. Magnam voluptatum voluptas vero fuga doloremque, magni cupiditate quidem!</div>
+      <div>Recusandae, optio vitae atque repudiandae, voluptas illo. Necessitatibus deleniti, vel ab, fuga facilis iste quo ad cumque suscipit aliquid ipsum similique id quisquam eaque beatae eligendi quae natus explicabo. Assumenda.</div>
+      <div>Officia asperiores ipsum nostrum, odit natus consectetur quo vitae quis, maiores, libero doloremque beatae incidunt similique, consequuntur voluptates assumenda qui fugiat dolorem ipsam. Cupiditate assumenda doloremque molestiae enim minima aspernatur!</div>
+      <div>Nisi maxime quis soluta cum impedit eos sed aspernatur nemo, accusamus ab numquam autem eaque, rerum aut facilis? Eligendi, ea, maiores. Officia aliquam dolor, rerum. Eos atque tempora dignissimos, similique.</div>
+      <div>Delectus tempora maiores dignissimos officiis vitae fuga, sunt, repellendus, fugiat molestias ad impedit. Id, quam, autem. Accusantium a laboriosam laborum. Laborum fuga, assumenda, quae corporis amet aliquid officiis illum minima.</div>
+      <div>Cumque fugiat atque, molestiae perferendis quasi, quaerat iste voluptate quas ipsa dicta corporis incidunt quibusdam! Quis alias iusto, atque veniam natus similique, optio debitis quibusdam culpa quia, aperiam, cupiditate perspiciatis!</div>
+      <div>Doloremque dolor cupiditate praesentium a reprehenderit expedita nostrum, commodi, illo consectetur natus minima tempora asperiores laboriosam. Perferendis, blanditiis vel impedit nobis nam ea excepturi optio, ratione nihil natus iusto laborum.</div>
+      <div>Quasi nam aliquam porro ullam dolorem sit nobis. Iure accusamus, facere optio eligendi rem. Veniam fugit praesentium adipisci, doloremque quas, quam facere repudiandae error, quasi voluptate optio ullam ea explicabo.</div>
+      <div>Vero ab itaque enim quod officia nemo dicta mollitia placeat nam voluptas totam eius excepturi voluptatum repellendus consequatur tenetur architecto, ea sit quia. Sint neque laboriosam itaque natus! Consectetur, earum!</div>
+      <div>Rerum iure maxime laborum tenetur omnis, in enim. Voluptas quisquam laudantium at obcaecati, eius vel voluptates inventore, magni vitae minima, provident ipsa adipisci nulla, molestias minus et a! Voluptatibus, nostrum!</div>
+      <div>Nemo magni voluptates expedita rem quas nesciunt explicabo pariatur fugiat nam, dignissimos! Perspiciatis tempore, est eum eius reiciendis blanditiis in minima dolore, eveniet error voluptatem? Molestiae, unde in provident itaque.</div>
+      <div>Sapiente corrupti sunt perferendis debitis velit commodi, tempora quam vero necessitatibus natus ipsam accusantium, perspiciatis, rem expedita dicta eius optio itaque alias id quas deserunt. Iusto dolor, qui quisquam ipsum.</div>
+      <div>Dicta animi laboriosam ipsum dolor ratione fuga, ad ut nemo accusamus, ab omnis? Architecto nostrum voluptas, natus quam aliquam vero voluptatem, iure eius sint sapiente aut voluptatum rem iusto error.</div>
+     </ion-scroll>
+     </ion-card-content>
+    </ion-card>
+    <ion-card>
+      <ion-card-content>
+        <ion-checkbox ng-model="vm.tosChecked">I accept the Terms of Services.</ion-checkbox>
+        <button class="button button-block button-balanced" ng-disabled="!vm.tosChecked" ng-click="vm.postTos()"> Continue</button>
+      </ion-card-content>
+    </ion-card>
+</ion-view>
