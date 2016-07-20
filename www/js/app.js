@@ -4,7 +4,7 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('patApp', ['ionic','ionic.service.core', 'starter.controllers' , 'starter.services'])
+angular.module('patApp', ['ionic','ionic.service.core', 'starter.controllers' , 'starter.services', 'ngCordovaOauth'])
 
 .run(function($ionicPlatform , $rootScope, $timeout) {
   $ionicPlatform.ready(function() {

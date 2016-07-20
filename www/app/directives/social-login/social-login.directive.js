@@ -15,38 +15,33 @@
         return directive;
     }
 
-    SocialLoginController.$inject = ['$state', '$ionicLoading'];
+    SocialLoginController.$inject = ['$state', '$ionicLoading', '$cordovaOauth'];
 
-    function SocialLoginController($state, $ionicLoading) {
+    function SocialLoginController($state, $ionicLoading, $cordovaOauth) {
         var dvm = this;
 
         dvm.facebookLogin = function() {
           $ionicLoading.show({});
-            Ionic.Auth.login('facebook', { 'remember': true }).then(
-                function() {
-                $ionicLoading.hide();
+          $cordovaOauth.facebook("1736760026576740", ["email"], {})
+          .then(function(result) {
+              console.log(JSON.stringify(result));
+              console.log(result);
+          }, function(error) {
+              console.log(JSON.stringify(error));
+          });
 
-                    $state.go('app.dashboard');
-                },
-                function(errors) {
-                    console.log(errors);
-
-                });
         }
 
         dvm.googleLogin = function() {
           $ionicLoading.show({});
 
-            Ionic.Auth.login('google', { 'remember': true }).then(
-                function() {
-                $ionicLoading.hide();
-
-                    $state.go('app.dashboard');
-                },
-                function(errors) {
-                    console.log(errors);
-
-                });
+          $cordovaOauth.google("303760359301-oeemf28rrecl0bnffu96brlpnkom60r0.apps.googleusercontent.com", ["https://www.googleapis.com/auth/userinfo.email"])
+          .then(function(result) {
+              console.log(JSON.stringify(result));
+              console.log(result);
+          }, function(error) {
+              console.log(error);
+          });
         }
 
     }
