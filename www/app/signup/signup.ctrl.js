@@ -4,9 +4,12 @@
     SignupCtrl.$inject = ['$state', '$ionicPopup', '$ionicLoading'];
 
     function SignupCtrl($state, $ionicPopup, $ionicLoading) {
+        Ionic.Auth.logout();
         var vm = this;
+        vm.ionicUser = null;
 
         vm.islogin = false;
+        vm.posted = false;
 
         vm.signupData = {};
 
@@ -34,32 +37,22 @@
                 'custom': vm.custom
             };
 
-            console.log(details);
+            Ionic.Auth.signup(details) // if signup completes
+            .then(function(newuser) {
+                $ionicLoading.hide({});
+                var user = Ionic.User.current();
+                // console.log(user);
+                // console.log(user.isAuthenticated());
+                $state.go('default.login', {'signup': true});
+            }, function(errors) {
+                console.log("error1", errors, errors.length)
+                $ionicLoading.hide({});
+                for (var i = 0; i < errors.errors.length; i++) {
+                    vm.showAlert(errorsDict[errors.errors[i]]);
+                }
+            });
 
-            Ionic.Auth.signup(details).then(
-                function() {
-                    console.log("Signup");
-                    Ionic.Auth.login('basic', {}, details).then(
-                        function() {
-                          $ionicLoading.hide({});
-
-                            $state.go('app.dashboard');
-                        },
-                        function() {
-                            vm.showAlert('Invalid username or password.');
-                        }
-                    );
-
-                },
-                function(errors) {
-                  console.log(errors, errors.length)
-                  $ionicLoading.hide({});
-                    for (var i=0; i<errors.errors.length; i++){
-                        vm.showAlert(errorsDict[errors.errors[i]]);
-                    }
-                });
-
-        };
+        }; // end signup
 
         // An alert dialog
         vm.showAlert = function(msg) {

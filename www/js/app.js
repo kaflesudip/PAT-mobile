@@ -21,26 +21,6 @@ angular.module('patApp', ['ionic','ionic.service.core', 'starter.controllers' , 
     }
   });
 
-     $rootScope.authStatus = false;
-	 //stateChange event
-	  $rootScope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams){
-		  $rootScope.authStatus = toState.authStatus;
-		  if($rootScope.authStatus){
-
-
-		  }
-    });
-
-	$rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
-		console.log("URL : "+toState.url);
-		if(toState.url=='/dashboard'){
-			console.log("match : "+toState.url);
-			$timeout(function(){
-				angular.element(document.querySelector('#leftMenu' )).removeClass("hide");
-			},1000);
-		}
-	});
-
 })
 
 .config(function($stateProvider, $urlRouterProvider) {
@@ -57,13 +37,12 @@ angular.module('patApp', ['ionic','ionic.service.core', 'starter.controllers' , 
 //--------------------------------------
 
  .state('default.login', {
-    url: '/login',
+    url: '/login:signup',
     views: {
       'menuContent': {
         templateUrl: 'app/login/tab-signin.html'
       }
-    },
-	authStatus: false
+    }
   })
  .state('default.signup', {
     url: '/signup',
@@ -71,8 +50,16 @@ angular.module('patApp', ['ionic','ionic.service.core', 'starter.controllers' , 
       'menuContent': {
         templateUrl: 'app/signup/tab-signup.html',
       }
-   },
-	authStatus: false
+   }
+  })
+
+  .state('default.tos', {
+    url: '/tos',
+    views: {
+      'menuContent': {
+        templateUrl: 'app/tos/tos.html',
+      }
+   }
   })
 //--------------------------------------
 
@@ -87,10 +74,9 @@ angular.module('patApp', ['ionic','ionic.service.core', 'starter.controllers' , 
     views: {
       'menuContent': {
         templateUrl: 'templates/dashboard.html',
-		controller: 'DashCtrl'
+		controller: 'DashboardCtrl'
       }
-     },
-	 authStatus: true
+     }
   })
 
 
