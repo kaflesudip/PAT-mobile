@@ -1,18 +1,19 @@
 (function() {
     'use strict';
     angular.module('patApp').controller('DashboardCtrl', DashboardCtrl);
-    DashboardCtrl.$inject = ['$state'];
+    DashboardCtrl.$inject = ['$state', '$localStorage'];
 
-    function DashboardCtrl($state ) {
+    function DashboardCtrl($state, $localStorage ) {
         var vm = this;
         checkAuthenticated();
 
         function checkAuthenticated() {
-            var user = Ionic.User.current();
-            if (!user.isAuthenticated()){
+          console.log($localStorage)
+
+            if (typeof $localStorage.token == 'undefined'){
                 $state.go('default.login');
             }
-            if (user.get('tos_accepted') == null){
+            if (typeof $localStorage.tos_accepted == 'undefined'){
                 $state.go('default.tos');
             }
         }

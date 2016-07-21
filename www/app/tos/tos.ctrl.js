@@ -8,17 +8,8 @@
 
         vm.postTos= function(){
             $ionicLoading.show({});
-            var user = Ionic.User.current();
-            api.postSignupInfo(user)
-            .then(function(){
-                user.set('tos_accepted', true);
-                return user.save();
-            },
-            function(error){
-                $ionicLoading.hide({});
-                console.log(error);
-            })
-            .then(function(){
+            api.UpdateUser(vm.data)
+            .then(function(response){
                 $ionicLoading.hide({});
                 $state.go('app.dashboard');
             },

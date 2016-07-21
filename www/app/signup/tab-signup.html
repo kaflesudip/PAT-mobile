@@ -16,18 +16,18 @@
                       <label class="item item-input  "><span class="input-label">Password</span>
                           <input type="password" placeholder="Password" ng-model="vm.user.password" required="required" > </label>
                       <label class="item item-input "><span class="input-label">Full Name</span>
-                          <input type="text" placeholder="Full Name" ng-model="vm.custom.name"> </label>
+                          <input type="text" placeholder="Full Name" ng-model="vm.user.name"> </label>
                       <label class="item item-input   item-select">
                         <div class="input-label">Sex</div>
-                          <select name="" id="" ng-model="vm.custom.sex">
+                          <select name="" id="" ng-model="vm.user.sex">
                               <option value="male">Male</option>
                               <option value="female">Female</option>
                           </select>
                       </label>
                       <label class="item item-input  "><span class="input-label">Zip Code</span>
-                          <input type="text" placeholder="Zip Code" ng-model="vm.custom.zip_code"> </label>
+                          <input type="text" placeholder="Zip Code" ng-model="vm.user.zip_code"> </label>
                       <label class="item item-input  "><span class="input-label">Date of Birth</span>
-                          <input type="date" placeholder="Date of Birth" ng-model="vm.custom.dob"> </label>
+                          <input type="date" placeholder="Date of Birth" ng-model="vm.user.dob"> </label>
                   </div>
                   <div class="loginButton">
                       <button type="submit" class="button ion-person button-block button-balanced" ng-disabled="registerform.$invalid"> Register </button>

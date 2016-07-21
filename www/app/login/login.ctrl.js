@@ -1,9 +1,9 @@
 (function() {
     'use strict';
     angular.module('patApp').controller('LoginCtrl', LoginCtrl);
-    LoginCtrl.$inject = ['$location', '$state', '$ionicPopup', '$ionicLoading', '$stateParams'];
+    LoginCtrl.$inject = ['$location', '$state', '$ionicPopup', '$ionicLoading', 'api'];
 
-    function LoginCtrl($location, $state, $ionicPopup, $ionicLoading, $stateParams) {
+    function LoginCtrl($location, $state, $ionicPopup, $ionicLoading, api) {
         var vm = this;
 
 
@@ -12,30 +12,24 @@
         vm.loginData = {};
 
         //--------------------------------------------
-        vm.login = function(userlogin) {
+        vm.login = function(user) {
 
             $ionicLoading.show({});
-            if (typeof(userlogin) == 'undefined') {
+            if (typeof(user) == 'undefined') {
               $ionicLoading.hide({});
                 vm.showAlert('Please fill username and password to proceed.');
                 return false;
             }
 
-            var details = {
-              'email': vm.userlogin.email,
-              'password': vm.userlogin.password
-            };
-
-            Ionic.Auth.login('basic', {'remember': true}, details).then(
-              function(loggeduser){
-                console.log("logged in");
-                $ionicLoading.hide();
+            api.Login(vm.user)
+            .then(function(token) {
+                $ionicLoading.hide({});
                 $state.go('app.dashboard');
-              }, function(error){
-                $ionicLoading.hide();
-                vm.showAlert('Invalid username or password.');
-              }
-            );
+            }, function(errors) {
+                $ionicLoading.hide({});
+                console.log(errors);
+                vm.showAlert(errors.data[Object.keys(errors.data)[0]]);
+            });
 
         };
 
@@ -45,10 +39,6 @@
                 title: 'Warning Message',
                 template: msg
             });
-        };
-
-        if ($stateParams.signup){
-          vm.showAlert("Signup successful. Please login to continue.");
         };
 
         //logout

@@ -4,9 +4,9 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('patApp', ['ionic','ionic.service.core', 'starter.controllers' , 'starter.services', 'ngCordovaOauth'])
+angular.module('patApp', ['ionic','ionic.service.core', 'starter.controllers' , 'starter.services', 'ngCordovaOauth', 'ngStorage'])
 
-.run(function($ionicPlatform , $rootScope, $timeout) {
+.run(function($ionicPlatform , $rootScope, $timeout, $localStorage, $http, $state) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -19,8 +19,18 @@ angular.module('patApp', ['ionic','ionic.service.core', 'starter.controllers' , 
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
     }
+
+    if (typeof $localStorage.token != 'undefined'){
+      $http.defaults.headers.common['Authorization'] = 'Token ' + $localStorage.token;
+      $state.go('app.dashboard')
+    }
+
   });
 
+})
+
+.constant('RESOURCES',{
+      API_URL: 'http://192.168.100.2:8000/'
 })
 
 .config(function($stateProvider, $urlRouterProvider) {
