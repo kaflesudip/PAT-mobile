@@ -1,0 +1,27 @@
+<ion-view view-title="Sign Up" class="loginBg" hide-nav-bar="true" ng-controller="CompletesocialCtrl as vm">
+    <ion-content class="padding">
+        <div class="row responsive-sm padding remvoeBP">
+            <div class="col">
+                <div class="app-logo"><img src="img/logo.png"></div>
+                <form ng-submit="vm.update()" name="registerform" >
+                  <div class="list list-inset removePM">
+                      <label class="item item-input   item-select">
+                        <div class="input-label">Sex</div>
+                          <select name="" id="" ng-model="vm.user.sex">
+                              <option value="male">Male</option>
+                              <option value="female">Female</option>
+                          </select>
+                      </label>
+                      <label class="item item-input  "><span class="input-label">Zip Code</span>
+                          <input type="text" placeholder="Zip Code" ng-model="vm.user.zip_code"> </label>
+                      <label class="item item-input  "><span class="input-label">Date of Birth</span>
+                          <input type="date" placeholder="Date of Birth" ng-model="vm.user.dob_old"> </label>
+                  </div>
+                  <div class="loginButton">
+                      <button type="submit" class="button ion-person button-block button-balanced" ng-disabled="registerform.$invalid"> Submit </button>
+                  </div>
+                </form>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

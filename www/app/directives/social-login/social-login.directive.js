@@ -15,28 +15,32 @@
         return directive;
     }
 
-    SocialLoginController.$inject = ['$state', '$ionicLoading', '$cordovaOauth', '$http'];
+    SocialLoginController.$inject = ['$state', '$ionicLoading', '$cordovaOauth', '$http', '$localStorage', 'RESOURCES'];
 
-    function SocialLoginController($state, $ionicLoading, $cordovaOauth, $http) {
+    function SocialLoginController($state, $ionicLoading, $cordovaOauth, $http, $localStorage, RESOURCES) {
         var dvm = this;
 
         dvm.facebookLogin = function() {
           $ionicLoading.show({});
-          $cordovaOauth.facebook("1736760026576740", ["email"], {})
+          $cordovaOauth.facebook(RESOURCES.FACEBOOK_ID, ["email"], {})
           .then(function(result) {
               console.log(result);
-              var url = 'http://192.168.100.2:8000/users/rest-auth/facebook/'
+              var url = RESOURCES.API_URL + 'users/rest-auth/facebook/'
               var fbdata = {
                 "access_token": result.access_token
               }
               return $http.post(url, fbdata)
           }, function(error) {
+              $ionicLoading.hide({});
               console.log(JSON.stringify(error));
           })
           .then(function(response){
-            console.log(response);
-            console.log(response.headers('Set-Cookie'))
+              $ionicLoading.hide({});
+              $localStorage.token = response.data.key;
+              $http.defaults.headers.common['Authorization'] = 'Token ' + response.data.key;
+              $state.go('default.completesocial')
           }, function(error){
+            $ionicLoading.hide({});
             console.log(error);
           });
 
@@ -47,10 +51,24 @@
 
           $cordovaOauth.google("303760359301-oeemf28rrecl0bnffu96brlpnkom60r0.apps.googleusercontent.com", ["https://www.googleapis.com/auth/userinfo.email"])
           .then(function(result) {
-              console.log(JSON.stringify(result));
               console.log(result);
+              var url = RESOURCES.API_URL + 'users/rest-auth/google/'
+              var fbdata = {
+                "access_token": result.access_token
+              }
+              return $http.post(url, fbdata)
           }, function(error) {
-              console.log(error);
+              $ionicLoading.hide({});
+              console.log(JSON.stringify(error));
+          })
+          .then(function(response){
+              $ionicLoading.hide({});
+              $localStorage.token = response.data.key;
+              $http.defaults.headers.common['Authorization'] = 'Token ' + response.data.key;
+              $state.go('default.completesocial')
+          }, function(error){
+            $ionicLoading.hide({});
+            console.log(error);
           });
         }
 

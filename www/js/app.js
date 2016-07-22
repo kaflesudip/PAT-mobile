@@ -22,7 +22,7 @@ angular.module('patApp', ['ionic','ionic.service.core', 'starter.controllers' , 
 
     if (typeof $localStorage.token != 'undefined'){
       $http.defaults.headers.common['Authorization'] = 'Token ' + $localStorage.token;
-      $state.go('app.dashboard')
+      $state.go('app.dashboard');
     }
 
   });
@@ -30,7 +30,10 @@ angular.module('patApp', ['ionic','ionic.service.core', 'starter.controllers' , 
 })
 
 .constant('RESOURCES',{
-      API_URL: 'http://192.168.100.2:8000/'
+      API_URL: 'http://ec2-52-91-71-216.compute-1.amazonaws.com/',
+      FACEBOOK_ID : "1736760026576740",
+      GOOGLE_ID: "303760359301-oeemf28rrecl0bnffu96brlpnkom60r0.apps.googleusercontent.com"
+
 })
 
 .config(function($stateProvider, $urlRouterProvider) {
@@ -63,6 +66,15 @@ angular.module('patApp', ['ionic','ionic.service.core', 'starter.controllers' , 
    }
   })
 
+ .state('default.completesocial', {
+    url: '/completesocial',
+    views: {
+      'menuContent': {
+        templateUrl: 'app/completesocial/completesocial.html',
+      }
+   }
+  })
+
   .state('default.tos', {
     url: '/tos',
     views: {
@@ -76,7 +88,8 @@ angular.module('patApp', ['ionic','ionic.service.core', 'starter.controllers' , 
    .state('app', {
       url: '/app',
       abstract: true,
-      templateUrl: 'templates/menu.html'
+      templateUrl: 'app/menu/menu.html',
+
   })
 
   .state('app.dashboard', {

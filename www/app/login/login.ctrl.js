@@ -1,9 +1,9 @@
 (function() {
     'use strict';
     angular.module('patApp').controller('LoginCtrl', LoginCtrl);
-    LoginCtrl.$inject = ['$location', '$state', '$ionicPopup', '$ionicLoading', 'api'];
+    LoginCtrl.$inject = ['$location', '$state', '$ionicPopup', '$ionicLoading', '$q', 'api'];
 
-    function LoginCtrl($location, $state, $ionicPopup, $ionicLoading, api) {
+    function LoginCtrl($location, $state, $ionicPopup, $ionicLoading, $q, api) {
         var vm = this;
 
 
@@ -16,20 +16,27 @@
 
             $ionicLoading.show({});
             if (typeof(user) == 'undefined') {
-              $ionicLoading.hide({});
+               $ionicLoading.hide({});
                 vm.showAlert('Please fill username and password to proceed.');
                 return false;
             }
 
             api.Login(vm.user)
-            .then(function(token) {
-                $ionicLoading.hide({});
-                $state.go('app.dashboard');
-            }, function(errors) {
-                $ionicLoading.hide({});
-                console.log(errors);
-                vm.showAlert(errors.data[Object.keys(errors.data)[0]]);
-            });
+                .then(function(token) {
+                    return api.GetUserInfo();
+                }, function(errors) {
+                    $ionicLoading.hide({});
+                    console.log(errors);
+                    vm.showAlert(errors.data[Object.keys(errors.data)[0]]);
+                    $q.reject(errors);
+                })
+                .then(function(data){
+                  $ionicLoading.hide({});
+                  $state.go('app.dashboard')
+                }, function(error){
+                  $ionicLoading.hide({});
+                  console.log(errors);
+                });
 
         };
 

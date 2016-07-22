@@ -23,15 +23,15 @@
 
 
             api.Signup(vm.user)
-            .then(function(token) {
-                $ionicLoading.hide({});
-                $state.go('app.dashboard');
-                console.log(token);
-            }, function(errors) {
-                $ionicLoading.hide({});
-                console.log(errors);
-                vm.showAlert(errors.data[Object.keys(errors.data)[0]]);
-            });
+                .then(function(token) {
+                    $ionicLoading.hide({});
+                    $state.go('app.dashboard');
+                    console.log(token);
+                }, function(errors) {
+                    $ionicLoading.hide({});
+                    console.log(errors);
+                    vm.showAlert(errors.data[Object.keys(errors.data)[0]]);
+                });
         }; // end signup
 
         vm.showAlert = function(msg) {

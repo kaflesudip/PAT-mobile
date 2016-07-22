@@ -1,7 +1,7 @@
 <ion-view view-title="TOS" class="loginBg" hide-nav-bar="true" ng-controller="TosCtrl as vm">
     <ion-card>
       <ion-card-content>
-          <ion-scroll zooming="true" direction="xy" style="height: 500px; background-color: #fff; padding: 10px 10px 10px 10px">
+          <ion-scroll zooming="true" direction="xy" style="height: 300px; background-color: #fff; padding: 10px 10px 10px 10px">
       <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla commodi, voluptatibus sit repellendus provident dolores maxime eveniet obcaecati eius. Iusto facilis eveniet animi repellat debitis aliquam, assumenda cupiditate quis molestiae.</div><div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel quos, dignissimos aliquam ea, non accusamus quo optio magnam iusto, laboriosam magni officia sequi nam blanditiis, nesciunt obcaecati culpa doloremque qui?</div>
       <div>Distinctio aut magni illo voluptas nemo, accusantium pariatur rem, harum eveniet deserunt adipisci modi animi iste labore provident eos facere quisquam, libero dolore. Rerum porro, ipsa, quis sequi provident rem.</div>
       <div>Quibusdam excepturi quod ab voluptatem aperiam, autem totam eius. Dignissimos distinctio necessitatibus quaerat incidunt, nihil maxime esse, nemo ratione, ad, quisquam ex itaque quos magnam. Voluptatum iusto ad dolor doloremque.</div>
@@ -27,8 +27,8 @@
     </ion-card>
     <ion-card>
       <ion-card-content>
-        <ion-checkbox ng-model="vm.tosChecked">I accept the Terms of Services.</ion-checkbox>
-        <button class="button button-block button-balanced" ng-disabled="!vm.tosChecked" ng-click="vm.postTos()"> Continue</button>
+        <ion-checkbox ng-model="vm.data.tos_accepted">I accept the Terms of Services.</ion-checkbox>
+        <button class="button button-block button-balanced" ng-disabled="!vm.data.tos_accepted" ng-click="vm.postTos()"> Continue</button>
       </ion-card-content>
     </ion-card>
 </ion-view>

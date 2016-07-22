@@ -5,17 +5,21 @@
 
     function DashboardCtrl($state, $localStorage ) {
         var vm = this;
-        checkAuthenticated();
-
         function checkAuthenticated() {
           console.log($localStorage)
 
             if (typeof $localStorage.token == 'undefined'){
                 $state.go('default.login');
             }
-            if (typeof $localStorage.tos_accepted == 'undefined'){
+
+            else if (typeof $localStorage.is_full_profile == 'undefined'){
+                $state.go('default.completesocial');
+            }
+            else if (typeof $localStorage.tos_accepted == 'undefined'){
                 $state.go('default.tos');
             }
         }
+
+      checkAuthenticated();
     }
 })();
