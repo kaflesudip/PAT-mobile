@@ -1,0 +1,26 @@
+<ion-view view-title="Dashboard" hide-back-button="true" ng-controller="ActivityCtrl as vm">
+    <ion-content>
+        <div class="row" style="text-align:center">
+            <div class="col col-33 col-offset-33">
+                <div>
+                    <label for="blue">Select Activity</label>
+                </div>
+                <div>
+                  <select id="blue" class="activity-select">
+                      <optgroup>
+                          <option>Working</option>
+                          <option>Lounging</option>
+                          <option>Studying</option>
+                      </optgroup>
+                      <optgroup>
+                          <option>Watching Movie</option>
+                      </optgroup>
+                  </select>
+                </div>
+                <div style="margin-top:30px">
+                  <button class="button button-balanced">Submit</button>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

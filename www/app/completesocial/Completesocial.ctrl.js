@@ -13,7 +13,7 @@
                 $ionicLoading.hide({});
                 console.log("socialres", response);
                 if (response.data.is_full_profile){
-                  $state.go('app.dashboard');
+                  $state.go('app.activity');
                 }
             }, function(errors){
                 console.log(errors);
@@ -26,7 +26,7 @@
             api.UpdateUser(vm.user)
                 .then(function(token) {
                     $ionicLoading.hide({});
-                    $state.go('app.dashboard');
+                    $state.go('app.activity');
                 }, function(errors) {
                     $ionicLoading.hide({});
                     console.log(errors);

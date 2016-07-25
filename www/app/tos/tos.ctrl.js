@@ -11,7 +11,7 @@
             api.UpdateUser(vm.data)
             .then(function(response){
                 $ionicLoading.hide({});
-                $state.go('app.dashboard');
+                $state.go('app.activity');
             },
             function(error){
                 $ionicLoading.hide({});

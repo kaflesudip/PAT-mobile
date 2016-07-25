@@ -4,7 +4,7 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('patApp', ['ionic','ionic.service.core', 'starter.controllers' , 'starter.services', 'ngCordovaOauth', 'ngStorage'])
+angular.module('patApp', ['ionic','ionic.service.core', 'starter.controllers' , 'starter.services', 'ngCordovaOauth', 'ngStorage', 'ngCordova'])
 
 .run(function($ionicPlatform , $rootScope, $timeout, $localStorage, $http, $state) {
   $ionicPlatform.ready(function() {
@@ -22,7 +22,7 @@ angular.module('patApp', ['ionic','ionic.service.core', 'starter.controllers' , 
 
     if (typeof $localStorage.token != 'undefined'){
       $http.defaults.headers.common['Authorization'] = 'Token ' + $localStorage.token;
-      $state.go('app.dashboard');
+      $state.go('app.activity');
     }
 
   });
@@ -92,36 +92,16 @@ angular.module('patApp', ['ionic','ionic.service.core', 'starter.controllers' , 
 
   })
 
-  .state('app.dashboard', {
-    url: '/dashboard',
+  .state('app.activity', {
+    url: '/activity',
     views: {
       'menuContent': {
-        templateUrl: 'templates/dashboard.html',
-		controller: 'DashboardCtrl'
+        templateUrl: 'app/activity/activity.html',
       }
      }
-  })
-
-
-    .state('app.profiles', {
-      url: '/profiles',
-      views: {
-        'menuContent': {
-          templateUrl: 'templates/profiles.html',
-          controller: 'ProfilesCtrl'
-        }
-      }
-    })
-
-  .state('app.profile', {
-    url: '/profile/:profileId',
-    views: {
-      'menuContent': {
-        templateUrl: 'templates/profile-detail.html',
-        controller: 'ProfileCtrl'
-      }
-    }
   });
+
+
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/default/signup');
 });

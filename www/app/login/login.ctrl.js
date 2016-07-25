@@ -32,7 +32,7 @@
                 })
                 .then(function(data){
                   $ionicLoading.hide({});
-                  $state.go('app.dashboard')
+                  $state.go('app.activity')
                 }, function(error){
                   $ionicLoading.hide({});
                   console.log(errors);

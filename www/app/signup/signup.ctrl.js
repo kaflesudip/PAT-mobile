@@ -25,7 +25,7 @@
             api.Signup(vm.user)
                 .then(function(token) {
                     $ionicLoading.hide({});
-                    $state.go('app.dashboard');
+                    $state.go('app.activity');
                     console.log(token);
                 }, function(errors) {
                     $ionicLoading.hide({});
