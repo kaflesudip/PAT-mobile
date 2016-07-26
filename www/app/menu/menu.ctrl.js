@@ -25,6 +25,6 @@
             }
         }
 
-      // checkAuthenticated();
+      checkAuthenticated();
     };
 })();
